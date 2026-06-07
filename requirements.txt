@@ -1,0 +1,15 @@
+streamlit==1.33.0
+plotly==5.20.0
+biopython==1.83
+requests==2.31.0
+beautifulsoup4==4.12.3
+reportlab==4.1.0
+fpdf2==2.7.9
+pandas==2.2.1
+numpy==1.26.4
+Kaleido==0.2.1
+dna_features_viewer==3.1.5
+seqfold==0.10.0
+matplotlib==3.10.9
+polars
+snapgene-reader==0.1.23
