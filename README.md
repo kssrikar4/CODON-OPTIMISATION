@@ -72,10 +72,6 @@ To handle dense feature sets (ORFs, primers, promoters), the mapping engine impl
    pip install -r requirements.txt
    ```
 
-3. Download usage data from [FDA DNA HIVE CoCoPUTs](https://dnahive.fda.gov/dna.cgi?cmd=codon_usage&id=537&mode=cocoputs).
-4. Place `.tsv` files in `data/cocoputs/`.
-5. Add SnapGene `.dna` files to categorized subfolders in `data/vectors/`.
-
 ### Execution
 Run the local server:
 ```bash
@@ -83,12 +79,18 @@ streamlit run app.py
 ```
 
 ## 6. Data Credits
-- **Usage Profiles**: CoCoPUTs / HIVE-CUTs (FDA / NCBI).
+- **Codon and Codon Pair Usage Tables (CoCoPUTs/ HIVE-CUTs (FDA / NCBI))**: Sourced from [FDA DNA HIVE CoCoPUTs](https://dnahive.fda.gov/dna.cgi?cmd=codon_usage&id=537&mode=cocoputs).
 - **Vector Sequences**: Sourced from [SnapGene Plasmid Files](https://www.snapgene.com/plasmids).
 
-### Acknowledgements
+## Acknowledgements
 
 I express my sincere gratitude to the developers and communities behind the core open-source libraries and platforms that made this project possible:
+
+* **HIVE-CUTs / CoCoPUTs (FDA/NCBI):** Providing the comprehensive Codon and Codon Pair Usage Tables (CoCoPUTs) essential for calculating the Relative Synonymous Codon Usage (RSCU) and optimizing gene expression profiles.
+    * [Access HIVE-CUTs](https://dnahive.fda.gov/dna.cgi?cmd=codon_usage&id=537&mode=cocoputs)
+
+* **SnapGene Plasmid Repository:** A crucial resource for validated, high-fidelity vector backbone sequences, ensuring that our in-silico cloning and optimization workflows remain biologically relevant.
+    * [Explore SnapGene Plasmids](https://www.snapgene.com/plasmids)
 
 * **Streamlit:** For providing the framework to build this interactive web application entirely in Python, streamlining UI development.
   * [Documentation](https://docs.streamlit.io/) | [GitHub](https://github.com/streamlit/streamlit)
@@ -109,4 +111,5 @@ I express my sincere gratitude to the developers and communities behind the core
 
 Their contributions to the open-source ecosystem have made the development of `Codon Optimisation` feasible.
 
+## License
 [Mozilla Public License Version 2.0](LICENSE) - Feel free to use and modify
