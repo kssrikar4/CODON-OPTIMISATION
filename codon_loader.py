@@ -1,12 +1,20 @@
 import os
 import polars as pl
+import tarfile
+import io
 from collections import defaultdict
 from Bio.Data import CodonTable
 
 def load_cocoputs(filepath=None):
     if not filepath or not os.path.exists(filepath): return {}
     try:
-        df = pl.read_csv(filepath, separator='\t', infer_schema_length=10000, ignore_errors=True, truncate_ragged_lines=True)
+        if filepath.endswith('.tar.xz'):
+            with tarfile.open(filepath, "r:xz") as tar:
+                member = tar.next()
+                f = tar.extractfile(member)
+                df = pl.read_csv(f.read(), separator='\t', infer_schema_length=10000, ignore_errors=True, truncate_ragged_lines=True)
+        else:
+            df = pl.read_csv(filepath, separator='\t', infer_schema_length=10000, ignore_errors=True, truncate_ragged_lines=True)
         cols = df.columns
         name_col = 'Species' if 'Species' in cols else ('Tissue' if 'Tissue' in cols else None)
         if not name_col: return {}

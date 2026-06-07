@@ -31,7 +31,10 @@ with st.sidebar:
     st.markdown('<div style="text-align: center; padding-bottom: 15px;"><h1 style="margin:0; font-size:1.8em; line-height:1.2;"><span style="color:#00f5ff;">CODON</span><span style="color:#39ff14;">OPTIMISATION</span></h1><div style="color: #64748b; font-size: 0.8em; font-family:\'Share Tech Mono\', monospace;">Sequence Engineering Platform</div><hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,245,255,0.75), rgba(0,0,0,0));"></div>', unsafe_allow_html=True)
     st.markdown('<div class="section-header">DATABASE CONFIGURATION</div>', unsafe_allow_html=True)
     st.markdown('<div style="background:rgba(0,245,255,0.05); padding:10px; border-left:3px solid #39ff14; font-size:0.85em; margin-bottom:15px;">Powered by CoCoPUTs / HIVE-CUTs. Please download data from FDA DNA HIVE and place it in the data/cocoputs/ directory.</div>', unsafe_allow_html=True)
-    db_files = glob.glob('data/cocoputs/*.tsv')
+    tsv_files = glob.glob('data/cocoputs/*.tsv')
+    tar_files = glob.glob('data/cocoputs/*.tar.xz')
+    db_files = tsv_files + [f for f in tar_files if f.replace('.tar.xz', '.tsv') not in tsv_files]
+    
     if db_files:
         sel_db = st.selectbox('Select Database File:', [os.path.basename(f) for f in db_files])
         freq_db, org_list = load_db(os.path.join('data/cocoputs/', sel_db))
